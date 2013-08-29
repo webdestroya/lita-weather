@@ -1,6 +1,9 @@
 language: ruby
 rvm:
-  - 2.0.0
+- 2.0.0
 script: bundle exec rake
 before_install:
-  - gem update --system
+- gem update --system
+env:
+  global:
+    secure: VUzvCJJDeWWEg09Vt3A6IGPpGZf01D6Zcfi02xVo00lGaFfzaD6x48JOJj9/6NmLTXwEXlru9bXHn3wXWPwsTYSER3V7O85wjLM1J+sqOVbhdqQ0ncvQVJQHiHnBAy/Y5IHQz1p+RTqpZQ86xY3h3VdBb+xYgJwEdz2cwqXWEuE=
