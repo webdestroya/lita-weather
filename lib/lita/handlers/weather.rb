@@ -14,6 +14,8 @@ module Lita
 
       route %r{^weather ([a-z0-9]{3,4})$}i, :weather_airport, command: true
 
+      route %r{^weather (pws:.*)}i, :weather_pws, command: true
+
       route %r{^weather (.+\s*,\s*[a-z]{2})$}i, :weather_city, command: true
 
       def weather_zip(response)
@@ -22,6 +24,11 @@ module Lita
       end
 
       def weather_airport(response)
+        return if Lita.config.handlers.weather.api_key.nil?
+        response.reply get_conditions(response.matches[0][0])
+      end
+
+      def weather_pws(response)
         return if Lita.config.handlers.weather.api_key.nil?
         response.reply get_conditions(response.matches[0][0])
       end
