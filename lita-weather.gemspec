@@ -1,6 +1,6 @@
 Gem::Specification.new do |spec|
   spec.name          = "lita-weather"
-  spec.version       = "0.0.3"
+  spec.version       = "0.0.4"
   spec.authors       = ["Mitch Dempsey"]
   spec.email         = ["mrdempsey@gmail.com"]
   spec.description   = %q{A Lita handler that provides current weather conditions}
