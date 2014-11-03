@@ -60,7 +60,7 @@ module Lita
 
       def get_conditions(query)
         # http://api.wunderground.com/api/KEY/conditions/q/37.7749295,-122.4194155.json
-        resp = http.get("http://api.wunderground.com/api/#{Lita.config.handlers.weather.api_key}/conditions/q/#{query}.json")
+        resp = http.get("http://api.wunderground.com/api/#{Lita.config.handlers.weather.api_key}/conditions/forecast/q/#{query}.json")
 
         raise 'InvalidResponse' unless resp.status == 200
         
@@ -72,11 +72,14 @@ module Lita
         end
 
         current = obj['current_observation']
+        forecast_today = obj['forecast']['simpleforecast']['forecastday'][0]
 
         line = []
         line << "#{current['display_location']['full']} (#{current['display_location']['zip']})"
         line << "#{current['weather']} @ #{current['temperature_string']}"
         line << "Humidity: #{current['relative_humidity']}, Winds: #{current['wind_string']}"
+        line << "High: #{forecast_today['high']['fahrenheit']} F (#{forecast_today['high']['celsius']} C)"
+        line << "Low: #{forecast_today['low']['fahrenheit']} F (#{forecast_today['low']['celsius']} C)"
 
         line.join ' - '
 
