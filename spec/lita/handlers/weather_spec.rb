@@ -1,26 +1,25 @@
 require "spec_helper"
 
 describe Lita::Handlers::Weather, lita_handler: true do
-
   before do
-    Lita.config.handlers.weather.api_key = ENV['WUNDERGROUND_KEY']
+    robot.config.handlers.weather.api_key = ENV['WUNDERGROUND_KEY']
   end
 
-  it { routes_command("weather 90210").to(:weather_zip) }
-  it { routes_command("weather 90210-1234").to(:weather_zip) }
+  it { is_expected.to route_command("weather 90210").to(:weather_zip) }
+  it { is_expected.to route_command("weather 90210-1234").to(:weather_zip) }
 
 
-  it { routes_command("weather los angeles, ca").to(:weather_city) }
+  it { is_expected.to route_command("weather los angeles, ca").to(:weather_city) }
 
 
-  it { doesnt_route_command("weather").to(:weather_zip) }
-  it { doesnt_route_command("weather lax").to(:weather_city) }
+  it { is_expected.not_to route_command("weather").to(:weather_zip) }
+  it { is_expected.not_to route_command("weather lax").to(:weather_city) }
 
-  it { doesnt_route_command("weather").to(:weather_zip) }
-  it { doesnt_route_command("weather").to(:weather_city) }
-  it { doesnt_route_command("weather").to(:weather_airport) }
+  it { is_expected.not_to route_command("weather").to(:weather_zip) }
+  it { is_expected.not_to route_command("weather").to(:weather_city) }
+  it { is_expected.not_to route_command("weather").to(:weather_airport) }
 
-  it { doesnt_route_command("weather ca").to(:weather_city) }
+  it { is_expected.not_to route_command("weather ca").to(:weather_city) }
 
 
   it "checks invalid zipcode" do
