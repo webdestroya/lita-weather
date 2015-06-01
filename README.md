@@ -5,6 +5,7 @@
 [![Coverage Status](https://coveralls.io/repos/webdestroya/lita-weather/badge.png)](https://coveralls.io/r/webdestroya/lita-weather)
 
 **lita-weather** is a handler for [Lita](https://github.com/jimmycuadra/lita) that provides current weather information for a specific location.
+It also provides radar and you can check for any weather alerts issued in your area.
 
 ## Installation
 
@@ -30,6 +31,8 @@ end
 Lita: weather 90210
 Lita: weather LAX
 Lita: weather beverly hills, ca
+Lita: radar dallas, tx
+Lita: alerts kansas city, ks
 ```
 
 ## License
